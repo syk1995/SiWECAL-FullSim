@@ -1,0 +1,3 @@
+/home/llr/ilc/shi/code/SiWECAL-FullSim/MarlinReco/lib/libMarlinReco.so.1.36.1
+/home/llr/ilc/shi/code/SiWECAL-FullSim/MarlinReco/lib/libMarlinReco.so.1.36
+/home/llr/ilc/shi/code/SiWECAL-FullSim/MarlinReco/lib/libMarlinReco.so

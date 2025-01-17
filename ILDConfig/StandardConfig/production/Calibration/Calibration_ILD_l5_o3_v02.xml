@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='ASCII'?>
+
+<!-- Calibration constants -->
+<constant name="EcalBarrelMip"> 0.0002629 </constant>
+<constant name="EcalEndcapMip"> 0.0002655 </constant>
+<constant name="EcalRingMip">0.0001575</constant>
+<constant name="HcalBarrelMip">0.0004925</constant>
+<constant name="HcalEndcapMip">0.0004725</constant>
+<constant name="HcalRingMip">0.0004875</constant>
+<constant name="EcalBarrelEnergyFactors"> 0.00758 0.01515 </constant>
+<constant name="EcalEndcapEnergyFactors"> 0.00810 0.01619 </constant>
+<constant name="EcalRingEnergyFactors">0.00668706922431 0.013583112754</constant>
+<constant name="HcalBarrelEnergyFactors">0.0287783798145</constant>
+<constant name="HcalEndcapEnergyFactors">0.0285819096797</constant>
+<constant name="HcalRingEnergyFactors">0.0349940637704</constant>
+<constant name="MuonCalibration">56.7</constant>
+<constant name="PandoraEcalToMip">153.846</constant>
+<constant name="PandoraHcalToMip">37.1747</constant>
+<constant name="PandoraMuonToMip">10.5263</constant>
+<constant name="PandoraEcalToEMScale">1.031</constant>
+<constant name="PandoraHcalToEMScale">1.0</constant>
+<constant name="PandoraEcalToHadBarrelScale">1.17344504717</constant>
+<constant name="PandoraEcalToHadEndcapScale">1.17344504717</constant>
+<constant name="PandoraHcalToHadScale">1.02821419758</constant>
+<constant name="PandoraSoftwareCompensationWeights">1.59121 -0.0281982 0.000250616 -0.0424222 0.000335128 -2.06112e-05 0.148549 0.199618 -0.0697277</constant>
+<constant name="ApplyPhotonPFOCorrections" value="false" />
+
+<!-- Ecal technology : SiWEcal or ScEcal -->
+<constant name="EcalTechnology" value="ScEcal" />
+<!-- Hcal technology : AHcal or SDHcal -->
+<constant name="HcalTechnology" value="AHcal" /> 
+
+<!-- Pandora settings file -->
+<constant name="PandoraSettingsFile" value="PandoraSettings/PandoraSettingsDefault.xml" />
+
+<!-- Additonal collection names to drop from the REC file -->
+<constant name="DropCollectionsECal">ECalBarrelSiHitsEven ECalBarrelSiHitsOdd ECalEndcapSiHitsEven ECalEndcapSiHitsOdd</constant>
+<constant name="DropCollectionsHCal">HCalBarrelRPCHits HCalEndcapRPCHits HCalECRingRPCHits</constant>
+<constant name="AdditionalDropCollectionsREC">${DropCollectionsECal} ${DropCollectionsHCal}</constant>
+
+<!-- dEdX error factor depends on large/small detector flavor -->
+<constant name="dEdXErrorFactor">7.55</constant>
+
+<!-- dEdX smearing factor depends on large/small detector flavor -->
+<constant name="dEdXSmearingFactor">0.029</constant>
+
+<!-- Particle identification PDF root file for l5(l4) detector -->
+<constant name="PidPDFFile" value="HighLevelReco/PIDFiles/LikelihoodPID_Standard_l5_v01.root" />
+<!-- Particle identification BDT weights file for low momemtum mu/pi separation -->
+<constant name="PidWeightFiles">
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_02GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_03GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_04GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_05GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_06GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_07GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_08GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_09GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_10GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_11GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_12GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_13GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_14GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_15GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_16GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_17GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_18GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_19GeVP_clusterinfo.weights.xml
+  HighLevelReco/PIDFiles/LowMomMuPiSeparation/TMVAClassification_BDTG_l5_20GeVP_clusterinfo.weights.xml
+</constant>
+
+<!-- SimCalorimeterHit collection names. Necessary to deal with hybrid reconstruction -->
+<constant name="ECalBarrelSimHitCollections">ECalBarrelScHitsEven ECalBarrelScHitsOdd</constant>
+<constant name="ECalEndcapSimHitCollections">ECalEndcapScHitsEven ECalEndcapScHitsOdd</constant>
+<constant name="ECalRingSimHitCollections">EcalEndcapRingCollection</constant>
+
+<constant name="HCalBarrelSimHitCollections">HcalBarrelRegCollection</constant>
+<constant name="HCalEndcapSimHitCollections">HcalEndcapsCollection</constant>
+<constant name="HCalRingSimHitCollections">HcalEndcapRingCollection</constant>
+
+<constant name="ECalSimHitCollections">${ECalBarrelSimHitCollections} ${ECalEndcapSimHitCollections} ${ECalRingSimHitCollections}</constant>
+<constant name="HCalSimHitCollections">${HCalBarrelSimHitCollections} ${HCalEndcapSimHitCollections} ${HCalRingSimHitCollections}</constant>
+
+<!-- BeamCal background map -->
+<constant name="BeamCalBackgroundFile">HighLevelReco/BeamCalBackground/BeamCalBackground-E${CMSEnergy}-B3.5-RealisticNominalAntiDid.root</constant>

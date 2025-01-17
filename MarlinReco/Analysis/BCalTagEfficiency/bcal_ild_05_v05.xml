@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!-- ?xml-stylesheet type="text/xsl" href="http://ilcsoft.desy.de/marlin/marlin.xsl"? -->
+<!-- ?xml-stylesheet type="text/xsl" href="marlin.xsl"? -->
+
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/MarlinReco/v01-04-01-pre/lib/libMarlinReco.so.1.4.1 (libMarlinReco.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/PandoraAnalysis/v00-04/lib/libPandoraAnalysis.so.0.3.0 (libPandoraAnalysis.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/MarlinPandora/v00-09-01/lib/libMarlinPandora.so.0.9.1 (libMarlinPandora.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/LCFIVertex/v00-06-01/lib/libLCFIVertex.so.0.6.1 (libLCFIVertex.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/CEDViewer/v01-06/lib/libCEDViewer.so.1.6.0 (libCEDViewer.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/Overlay/v00-13-pre/lib/libOverlay.so.0.13.0 (libOverlay.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/FastJetClustering/v00-02/lib/libFastJetClustering.so.0.2.0 (libFastJetClustering.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/MarlinFastJet/v00-01/lib/libMarlinFastJet.so.0.1.0 (libMarlinFastJet.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/LCTuple/v01-01/lib/libLCTuple.so.1.1.0 (libLCTuple.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/MarlinKinfit/v00-01-02/lib/libMarlinKinfit.so.0.1.2 (libMarlinKinfit.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/MarlinTrkProcessors/v01-08-pre01/lib/libMarlinTrkProcessors.so.1.8.0 (libMarlinTrkProcessors.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/Clupatra/v00-09-01-pre02/lib/libClupatra.so.0.9.1 (libClupatra.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/LCFIPlus/v00-05-01/lib/libLCFIPlus.so.0.5.1 (libLCFIPlus.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/ForwardTracking/v01-06-01/lib/libForwardTracking.so.1.6.1 (libForwardTracking.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/MarlinTPC/v00-10/lib/libMarlinTPC.so.0.10.0 (libMarlinTPC.so)-->
+<!-- Loading shared library : /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-02-pre01/Garlic/v2.10.1/lib/libGarlic.so.2.1.1 (libGarlic.so)-->
+
+<!--##########################################
+    #                                        #
+    #     Example steering file for marlin   #
+    #                                        #
+    ##########################################-->
+
+
+<marlin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ilcsoft.desy.de/marlin/marlin.xsd">
+ <execute>
+  <processor name="MyBCalTagEfficiency"/>
+  <processor name="MyLCIOOutputProcessor"/>  
+ </execute>
+
+ <global>
+  <parameter name="LCIOInputFiles">input.slcio</parameter>
+  <!-- limit the number of processed records (run+evt): -->  
+  <parameter name="MaxRecordNumber" value="0" />  
+  <parameter name="SkipNEvents" value="0" />  
+  <parameter name="SupressCheck" value="false" />  
+  <parameter name="GearXMLFile">GearOutput_ILD_o1_v05.xml</parameter>  
+  <parameter name="Verbosity" options="DEBUG0-4,MESSAGE0-4,WARNING0-4,ERROR0-4,SILENT"> DEBUG  </parameter> 
+  <parameter name="RandomSeed" value="1234567890" />
+ </global>
+
+<!--###### BCalTagEfficiency  ##########################################-->
+
+<processor name="MyBCalTagEfficiency" type="BCalTagEfficiency">
+<!--ForwardVeto propagates electrons or photons from IP to the BeamCal, and it gives the Energy and Momentum of the detected ones to the output ReconstructedParticles collection-->
+  
+  <!--  INPUT --->
+  <!--Name of the MCParticle collection-->
+  <parameter name="CollectionName" type="string" lcioInType="MCParticle">MCParticle </parameter>
+  <!--Name of input file for background energy density-->
+  <parameter name="BackgroundFilename" type="string">../../../ILDConfig/StandardConfig/current/bg_aver.sv01-14-p00.mILD_o1_v05.E1000-B1b_ws.PBeamstr-pairs.I210000.root</parameter>
+  
+  <!--  OUTPUT --->
+  <!--Name of the collection of clusters of tagged e's/gammas-->
+  <parameter name="BCALClusterName" type="string" lcioOutType="Cluster">BCalEffiClusters</parameter>
+  <!--Name of the tagged e/gamma  to mc-particle relation collection-->
+  <parameter name="BCALMCTruthLinkName" type="string" lcioOutType="LCRelation">BCalEffiMCTruthLink</parameter>
+  <!--Name of the tagged e/gamma collection-->
+  <parameter name="RecoPartCollectionName" type="string" lcioOutType="ReconstructedParticle">BCalEffiRecoParticles</parameter>
+  
+  <!--  STEERING --->
+  <!--Scaling of the energy density w.r.t default setup-->
+  <parameter name="densityScaling" type="float">1 </parameter>
+  <!--true: all electrons/photons in BCAL acceptance will be written to new collection-->
+  <parameter name="detectAll" type="bool">false </parameter>
+  <!--Nominal Beam Energy (*not used*)-->
+  <parameter name="eBeam" type="float">250 </parameter>
+  <!--true: electrons/photons written to new collection with smeared energy (and momentum)-->
+  <parameter name="smearEnergy" type="bool">true </parameter>
+  <!--Maximum energy of detected particles-->
+  <parameter name="thresholdmax" type="float">260 </parameter>
+  <!--Minimum energy of detected particles-->
+  <parameter name="thresholdmin" type="float">40 </parameter>
+  <!--position of the BeamCal-->
+  <parameter name="zbcal" type="float">3594.9 </parameter>
+  <!--true: assume MCParticles are already with xing angle. false: MCParticles are head-on-->
+  <parameter name="DBDsample" type="bool">true</parameter>
+  <!--true: new map bcal 1-30, pair mon 31. false: old map, pair mon 1, bcal 2-31-->
+  <parameter name="newMap" type="bool">true</parameter>
+  <!--true: awrite tree with DEBUG info-->
+  <parameter name="writeTree" type="bool">false</parameter>
+  <!--verbosity level of this processor ("DEBUG0-4,MESSAGE0-4,WARNING0-4,ERROR0-4,SILENT")-->
+  <parameter name="Verbosity" type="string">DEBUG </parameter>
+</processor>
+
+
+<!--###### LCIOOutputProcessor  ##########################################-->
+
+<processor name="MyLCIOOutputProcessor" type="LCIOOutputProcessor">
+<!--Writes the current event to the specified LCIO outputfile. Needs to be the last ActiveProcessor.-->
+  <!--drops the named collections from the event-->
+  <!--parameter name="DropCollectionNames" type="StringVec">TPCHits HCalHits  </parameter-->
+  <!--drops all collections of the given type from the event-->
+  <!--parameter name="DropCollectionTypes" type="StringVec">SimTrackerHit SimCalorimeterHit  </parameter-->
+  <!-- write complete objects in subset collections to the file (i.e. ignore subset flag)-->
+  <!--parameter name="FullSubsetCollections" type="StringVec">MCParticlesSkimmed  </parameter-->
+  <!--force keep of the named collections - overrules DropCollectionTypes (and DropCollectionNames)-->
+  <!--parameter name="KeepCollectionNames" type="StringVec"> BCALClusters, BCALMCTruthLink, BCALParticles </parameter-->
+  <!-- name of output file -->
+  <parameter name="LCIOOutputFile" type="string">output.slcio</parameter>
+  <!--write mode for output file:  WRITE_APPEND or WRITE_NEW-->
+  <parameter name="LCIOWriteMode" type="string">WRITE_NEW </parameter>
+  <!--will split output file if size in kB exceeds given value - doesn't work with APPEND and NEW-->
+  <!--parameter name="SplitFileSizekB" type="int">1992294 </parameter-->
+  <!--verbosity level of this processor ("DEBUG0-4,MESSAGE0-4,WARNING0-4,ERROR0-4,SILENT")-->
+  <parameter name="Verbosity" type="string">DEBUG </parameter>
+</processor>
+
+
+
+</marlin>
